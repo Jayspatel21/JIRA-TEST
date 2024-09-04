@@ -64,7 +64,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
   repository_dispatch:
     types: [ jira_deployment ]
 
