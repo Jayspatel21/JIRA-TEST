@@ -2,13 +2,13 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-  const port = 3000;
-  app.use(express.json());
-  
-  app.get('/', (req, res) => {
-    res.send('Hello World Devopss & code.....');
-  });
+const port = 3000;
+app.use(express.json());
 
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+app.get('/', (req, res) => {
+  res.send('Hello World Devopss & code.....');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
