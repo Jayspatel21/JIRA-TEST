@@ -65,7 +65,7 @@ name: CI-dev
 on:
   push:
     branches:
-      - stage
+      - dev
   repository_dispatch:
     types: 
       - jira_deployment 
