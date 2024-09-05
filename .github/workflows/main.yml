@@ -60,11 +60,11 @@
 #     - name: Install dependencies
 #       run: yarn
     
-name: CI-main
+name: CI-stage
 
 on:
   push:
-    branches: [ main ]
+    branches: [ stage ]
   repository_dispatch:
     types: [ jira_deployment ]
 
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [production]  
+        environment: [staging]  
 
     steps:
     # Step 1: Check out the code
