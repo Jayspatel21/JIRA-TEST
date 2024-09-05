@@ -1,0 +1,91 @@
+
+# name: CI
+
+# on:
+#   push:
+#     branches: [ main ]
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     # Step 1: Check out the code
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+
+#     # Step 2: Set up Node.js
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '16'
+
+#     # Step 3: Install dependencies
+#     - name: Install dependencies
+#       run: npm install
+
+#     # Step 4: Build the Docker image
+#     - name: Build Docker image
+#       run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/test-jira:latest .
+
+#     # Step 5: Log in to Docker Hub
+#     - name: Log in to Docker Hub
+#       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+#     # Step 6: Push the Docker image to Docker Hub
+#     - name: Push Docker image to Docker Hub
+#       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/test-jira:latest
+# name: CI
+
+# on:
+#   push:
+#     branches: [ main ]
+
+# jobs:
+#   deploy-to-vercel:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     # Step 1: Check out the code
+#     - name: Checkout code
+#       uses: actions/checkout@v3
+
+#     # Step 2: Set up Node.js
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '18'
+
+#     # Step 3: Install dependencies
+#     - name: Install dependencies
+#       run: yarn
+    
+name: CI-dev
+
+on:
+  push:
+    branches:
+      - dev
+  repository_dispatch:
+    types: 
+      - jira_deployment 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Development  
+
+    steps:
+    # Step 1: Check out the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: yarn
