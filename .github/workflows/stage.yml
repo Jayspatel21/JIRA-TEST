@@ -60,32 +60,34 @@
 #     - name: Install dependencies
 #       run: yarn
     
-name: CI-main
+name: CI-stage
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - stage
   repository_dispatch:
-    types: [ jira_deployment ]
+    types:
+      - jira_deployment
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [production]  
+    environment: Staging  # Explicitly set the environment to 'staging'
 
     steps:
-    # Step 1: Check out the code
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: yarn
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: yarn
+
+
