@@ -60,20 +60,20 @@
 #     - name: Install dependencies
 #       run: yarn
     
-name: CI
+name: CI-dev
 
 on:
   push:
-    branches: [ dev ]
+    branches:
+      - stage
   repository_dispatch:
-    types: [ jira_deployment ]
+    types: 
+      - jira_deployment 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [development]  
+    environment: Development  
 
     steps:
     # Step 1: Check out the code
