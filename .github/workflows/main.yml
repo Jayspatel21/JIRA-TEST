@@ -69,8 +69,11 @@ on:
     types: [ jira_deployment ]
 
 jobs:
-  deploy-to-vercel:
+  deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [development]  
 
     steps:
     # Step 1: Check out the code
