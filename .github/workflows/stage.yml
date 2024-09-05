@@ -73,7 +73,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: staging  # Explicitly set the environment to 'staging'
+    environment: Staging  # Explicitly set the environment to 'staging'
 
     steps:
       # Step 1: Check out the code
